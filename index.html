@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ORBIT</title>
 </head>
-<body style="font-family:Inter,sans-serif;padding:28px;color:#171a20;background:#fff">불러오는 중…</body>
+<body style="font-family:sans-serif;padding:28px;background:#fff;color:#171a20">불러오는 중…</body>
 <script>
 (async () => {
-  const n = 9;
-  const parts = [];
-  for (let i = 1; i <= n; i++) {
-    const res = await fetch("./c" + i + ".txt?t=" + Date.now());
-    if (!res.ok) throw new Error("chunk " + i);
-    parts.push(await res.text());
-  }
-  const html = decodeURIComponent(escape(atob(parts.join("").replace(/\s/g, ""))));
+  const res = await fetch("https://extendsclass.com/api/json-storage/bin/aebeada?t=" + Date.now());
+  if (!res.ok) throw new Error(res.status);
+  const data = await res.json();
+  if (!data.html) throw new Error("empty");
   document.open();
-  document.write(html);
+  document.write(data.html);
   document.close();
 })().catch((e) => {
   document.body.textContent = "온라인 화면을 못 불러왔습니다. " + e;
