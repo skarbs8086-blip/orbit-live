@@ -1,22 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ORBIT</title>
-</head>
-<body style="font-family:sans-serif;padding:28px;background:#fff;color:#171a20">불러오는 중…</body>
+<html lang="ko"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>ORBIT</title></head>
+<body style="font-family:sans-serif;padding:28px">불러오는 중…</body>
 <script>
 (async () => {
-  const res = await fetch("https://extendsclass.com/api/json-storage/bin/aebeada?t=" + Date.now());
-  if (!res.ok) throw new Error(res.status);
+  const res = await fetch("https://extendsclass.com/api/json-storage/bin/aebeada?t=" + Date.now(), { cache: "no-store" });
   const data = await res.json();
-  if (!data.html) throw new Error("empty");
-  document.open();
-  document.write(data.html);
-  document.close();
-})().catch((e) => {
-  document.body.textContent = "온라인 화면을 못 불러왔습니다. " + e;
-});
-</script>
-</html>
+  document.open(); document.write(data.html); document.close();
+})().catch((e) => { document.body.textContent = String(e); });
+</script></html>
